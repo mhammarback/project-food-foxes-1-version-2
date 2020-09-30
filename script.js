@@ -12,23 +12,18 @@ const searchRequest = new Request(SEARCH_API_URL, {
 })
 
 const restaurants = document.getElementById("restaurants");
-const filterButton = document.getElementById('filterSubmit')
+const filterButton = document.getElementById('filterSubmit');
+const checkElements = document.querySelectorAll('.rating');
 
 fetch(searchRequest)
   .then(response => response.json())
   .then(data => {
     const restaurantArray = data.restaurants;
-    console.log(restaurantArray);
     getRestaurantInfo(restaurantArray);
-    console.log(newRestaurants);
     newRestaurants.forEach((restaurant) => {
       restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
     });
   });
-
-const checkElements = document.querySelectorAll('.rating');
-const delivery = document.getElementById
-
 
 displayFilteredRestaurants = (array) => {
   let filteredRestaurants = [];
@@ -40,7 +35,6 @@ displayFilteredRestaurants = (array) => {
       filteredRestaurants = [...filteredRestaurants, ...partOfFilteredRestaurants];
     }
   })
-  console.log(filteredRestaurants);
   return filteredRestaurants;
 };
 
