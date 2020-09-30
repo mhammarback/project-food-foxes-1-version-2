@@ -124,6 +124,32 @@ footer {
 }
 
 
+.filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+  
+.filter p{
+    margin: 0 5px;
+}
+  
+.rating-container {
+    display: flex;
+}
+  
+.rating-option {
+    display: flex;
+    margin: 0 5px;
+    align-items: center;
+}
+  
+button {
+    margin: 0 5px;
+}
+
+
 /** Media Queries Tablet **/  
 
 @media screen and (min-width: 668px) and (max-width:1024px){
@@ -189,5 +215,10 @@ footer {
 .box img {
     max-width: 300px;
     height:200px;   
-    }    
-}
+    }   
+}    
+    
+    
+
+
+
