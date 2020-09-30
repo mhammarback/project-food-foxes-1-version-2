@@ -11,6 +11,14 @@
 <body>
   <header>
     <nav></nav>
+    <div class="price-dropdown">
+      <button class="price-button">Sort on price</button>
+      <div class="price-options">
+        <p onclick="sortOnCheapest()">Low price first</p>
+        <p onclick="sortOnExpensive()">High price first</p>
+        <p onclick="showRandomResults()">Random</p>
+      </div>
+    </div>
   </header>
   <section id="restaurants" class="restaurants">
 

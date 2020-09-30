@@ -25,9 +25,12 @@ const expensiveSearchRequest = new Request(EXPENSIVE_SEARCH_API_URL, {
 
 const restaurants = document.getElementById("restaurants")
 
+const showRandomResults = () => {
+  restaurants.innerHTML = "";
 fetch(searchRequest)
   .then(response => response.json())
   .then(data => {
+    console.log(data)
     console.log(data.restaurants);
     const newRestaurants = data.restaurants.map(item => {
       const name = item.restaurant.name;
@@ -42,6 +45,8 @@ fetch(searchRequest)
       restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
     });
   });
+};
+showRandomResults();
 
 const generateHTMLForRestaurants = (array1) => {
   let restaurantHTML = "";
