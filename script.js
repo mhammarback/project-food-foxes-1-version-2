@@ -23,30 +23,36 @@ const expensiveSearchRequest = new Request(EXPENSIVE_SEARCH_API_URL, {
   headers: headers
 });
 
-const restaurants = document.getElementById("restaurants")
+const restaurants = document.getElementById("restaurants");
+const filterButton = document.getElementById('filterSubmit');
+const checkElements = document.querySelectorAll('.rating');
 
 const showRandomResults = () => {
   restaurants.innerHTML = "";
-fetch(searchRequest)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-    console.log(data.restaurants);
-    const newRestaurants = data.restaurants.map(item => {
-      const name = item.restaurant.name;
-      const address = item.restaurant.location.address;
-      const averageCost = item.restaurant.average_cost_for_two;
-      const rating = item.restaurant.user_rating.aggregate_rating;
-      const image = item.restaurant.thumb;
-      return { name, address, averageCost, rating, image };
+  fetch(searchRequest)
+    .then(response => response.json())
+    .then(data => {
+      const restaurantArray = data.restaurants;
+      getRestaurantInfo(restaurantArray);
+      newRestaurants.forEach((restaurant) => {
+        restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
+      });
     });
-    console.log(newRestaurants);
-    newRestaurants.forEach((restaurant) => {
-      restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
-    });
-  });
 };
 showRandomResults();
+
+displayFilteredRestaurants = (array) => {
+  let filteredRestaurants = [];
+  checkElements.forEach((rating) => {
+    if (rating.checked) {
+      const partOfFilteredRestaurants = array.filter(item => {
+        return Math.round(item.rating) === parseInt(rating.value);
+      });
+      filteredRestaurants = [...filteredRestaurants, ...partOfFilteredRestaurants];
+    }
+  })
+  return filteredRestaurants;
+};
 
 const generateHTMLForRestaurants = (array1) => {
   let restaurantHTML = "";
@@ -61,42 +67,45 @@ const generateHTMLForRestaurants = (array1) => {
 const sortOnCheapest = () => {
   restaurants.innerHTML = "";
   fetch(cheapSearchRequest)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data.restaurants);
-    const newRestaurants = data.restaurants.map(item => {
-      const name = item.restaurant.name;
-      const address = item.restaurant.location.address;
-      const averageCost = item.restaurant.average_cost_for_two;
-      const rating = item.restaurant.user_rating.aggregate_rating;
-      const image = item.restaurant.thumb;
-      return { name, address, averageCost, rating, image };
+    .then(response => response.json())
+    .then(data => {
+      const restaurantArray = data.restaurants;
+      getRestaurantInfo(restaurantArray);
+      newRestaurants.forEach((restaurant) => {
+        restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
+      });
     });
-    console.log(newRestaurants);
-    newRestaurants.forEach((restaurant) => {
-      restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
-    });
-  });
 };
-
 
 const sortOnExpensive = () => {
   restaurants.innerHTML = "";
   fetch(expensiveSearchRequest)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data.restaurants);
-    const newRestaurants = data.restaurants.map(item => {
-      const name = item.restaurant.name;
-      const address = item.restaurant.location.address;
-      const averageCost = item.restaurant.average_cost_for_two;
-      const rating = item.restaurant.user_rating.aggregate_rating;
-      const image = item.restaurant.thumb;
-      return { name, address, averageCost, rating, image };
+    .then(response => response.json())
+    .then(data => {
+      const restaurantArray = data.restaurants;
+      getRestaurantInfo(restaurantArray);
+      newRestaurants.forEach((restaurant) => {
+        restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
+      });
     });
-    console.log(newRestaurants);
-    newRestaurants.forEach((restaurant) => {
-      restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
-    });
-  });
 };
+
+filterButton.addEventListener('click', () => {
+  const filteredRestaurants = displayFilteredRestaurants(newRestaurants);
+  restaurants.innerHTML = '';
+  filteredRestaurants.forEach((restaurant) => {
+    restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
+  });
+})
+
+let newRestaurants = [];
+const getRestaurantInfo = (array) => {
+  array.forEach(item => {
+    const name = item.restaurant.name;
+    const address = item.restaurant.location.address;
+    const averageCost = item.restaurant.average_cost_for_two;
+    const rating = parseFloat(item.restaurant.user_rating.aggregate_rating);
+    const image = item.restaurant.thumb;
+    newRestaurants.push({ name, address, averageCost, rating, image });
+  });
+}

@@ -40,3 +40,27 @@
 .price-dropdown:hover .price-button {
   background-color: #3e8e41;
 }
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.filter p{
+  margin: 0 5px;
+}
+
+.rating-container {
+  display: flex;
+}
+
+.rating-option {
+  display: flex;
+  margin: 0 5px;
+  align-items: center;
+}
+
+button {
+  margin: 0 5px;
+}
