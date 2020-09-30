@@ -22,7 +22,7 @@ fetch(searchRequest)
       const address = item.restaurant.location.address;
       const averageCost = item.restaurant.average_cost_for_two;
       const rating = item.restaurant.user_rating.aggregate_rating;
-      const image = item.restaurant.thumb;
+      const image = item.restaurant.featured_image;
       return { name, address, averageCost, rating, image };
     });
     console.log(newRestaurants);
@@ -33,10 +33,11 @@ fetch(searchRequest)
 
 const generateHTMLForRestaurants = (array1) => {
   let restaurantHTML = "";
-  restaurantHTML += `<h3>${array1.name}</h3>`;
+  restaurantHTML += `<div class="box"><h3>${array1.name}</h3>`;
   restaurantHTML += `<p>${array1.address}</p>`;
-  restaurantHTML += `<p>${array1.averageCost}</p>`;
-  restaurantHTML += `<p>${array1.rating}</p>`;
-  restaurantHTML += `<img src=${array1.image}>`;
+  restaurantHTML += `<p>${array1.averageCost} &#36 </p>`;
+  restaurantHTML += `<p>${array1.rating} &#11088</p>`;
+  restaurantHTML += `<img src=${array1.image}></div>`;
   return restaurantHTML;
 };
+

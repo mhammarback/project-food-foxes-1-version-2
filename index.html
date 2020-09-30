@@ -11,14 +11,38 @@
 
 <body>
   <header>
+   
     <nav>
-      <a class="linkright" href="#">Logga in</a>
-      <a class="linkright" href="#">Registrera dig</a>
+      <img src="./img/logo_size.jpg" alt="logo">
     </nav>
-  </header>
+
+   <div class="moreInfo">
+    <a class="discovery" href="#">Discovery</a>
+    <a class="delivery" href="#">Delivery</a>
+  </div>
+</header>  
+
+  <div class="price-dropdown">
+    <button class="price-button">Sort on price</button>
+    <div class="price-options">
+      <p onclick="sortOnCheapest()">Low price first</p>
+      <p onclick="sortOnExpensive()">High price first</p>
+      <p onclick="showRandomResults()">Random</p>
+    </div>
+  </div>
+
+  
+  <div class="city">
+    <h1>Dinner close to you in Atlanta</h1>
+  </div>
+
   <section id="restaurants" class="restaurants">
 
   </section>
+
+  <footer>
+    <p>project made by team foxes 1</p>
+  </footer>
 
   <script src="./script.js"></script>
 </body>

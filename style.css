@@ -2,19 +2,192 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 
-
 body {
-
+    margin:0;
 }
 
 
 nav {
     display: flex;
-    padding: 25px;
-    justify-content: flex-end;
-    
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 2px solid #E8E8E8;
 }
 
-.linkright {
-   margin: 10px;
+.moreInfo{
+    display: flex;
+    justify-content: center;
+    padding: 25px;  
+    margin-bottom: 50px;
+    border-bottom: 2px solid #E8E8E8;
+}
+
+.discovery {
+    padding-left: 10px; 
+    padding-right: 5px;
+    border-right: 2px solid #E8E8E8;
+}
+
+.delivery {
+    padding-left: 10px; 
+}
+
+/*Drop down menu*/
+
+.price-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+  
+.price-dropdown {
+   display: flex;
+   justify-content: center;
+}
+  
+.price-options {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    cursor: pointer;
+}
+  
+.price-options p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+.price-options p:hover {
+    background-color: #f1f1f1;
+}
+  
+.price-dropdown:hover .price-options {
+    display: block;
+}
+  
+.price-dropdown:hover .price-button {
+    background-color: #3e8e41;
+}
+
+
+
+.city {
+    margin-top: 150px;
+    text-align: center;
+}
+
+.restaurants {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;  
+    margin: 10px; 
+}
+
+.box {
+    max-width: 300px;
+    min-width: 280px;
+    min-height: 400px;
+    justify-content: center;
+    text-align: center;
+    border-style: solid;
+    border-color:#E8E8E8;;
+    margin-bottom: 20px;
+    margin: 5px;
+    -webkit-box-shadow: 0px 10px 19px 0px rgba(189,189,189,1);
+    -moz-box-shadow: 0px 10px 19px 0px rgba(189,189,189,1);
+    box-shadow: 0px 10px 19px 0px rgba(189,189,189,1);
+}
+
+.box img {
+    max-width: 280px;
+    height:200px;   
+}
+
+h3 {
+    font-size: 30px;
+}
+
+footer {
+    border-top:2px solid #E8E8E8;
+    padding: 40px;
+    text-align: center;
+}
+
+
+/** Media Queries Tablet **/  
+
+@media screen and (min-width: 668px) and (max-width:1024px){
+
+.price-dropdown {
+    justify-content: flex-start;
+    margin-left: 70px;
+}
+
+.restaurants { 
+    flex-wrap: wrap;
+    flex-direction: row;  
+    }
+
+.box {    
+    max-width: 300px;
+    min-width: 250px;
+    margin: 50px;    
+    }
+
+.box img {
+    max-width: 300px;
+    height:200px;   
+    }
+}
+
+
+
+/** Media Queries Desktop **/  
+
+
+@media screen and (min-width: 1024px){  
+
+.price-dropdown {
+    justify-content: flex-start;
+    margin-left: 100px;
+}
+
+.restaurants { 
+    flex-wrap: wrap;
+    flex-direction: row;  
+    justify-content: space-around;
+    border-top: 2px solid #E8E8E8;
+    margin-left: 80px;
+    margin-right: 80px;
+    }   
+ 
+.moreInfo {
+    margin-bottom: 100px;
+    }    
+
+.city {
+    text-align: left;
+    margin-left: 100px;
+    }
+
+.box {
+    max-width: 300px;
+    min-width: 300px;
+    margin: 50px;
+    }
+
+.box img {
+    max-width: 300px;
+    height:200px;   
+    }    
 }
