@@ -11,60 +11,50 @@
 
 <body>
   <header>
-   
     <nav>
       <img src="./img/logo_size.jpg" alt="logo">
     </nav>
-
-   <div class="moreInfo">
-    <a class="discovery" href="#">Discovery</a>
-    <a class="delivery" href="#">Delivery</a>
-  </div>
-</header>  
-
-  <div class="price-dropdown">
-    <button class="price-button">Sort on price</button>
-    <div class="price-options">
-      <p onclick="sortOnCheapest()">Low price first</p>
-      <p onclick="sortOnExpensive()">High price first</p>
-      <p onclick="showRandomResults()">Random</p>
+    <div class="moreInfo">
+      <a class="discovery" href="#">Discovery</a>
+      <a class="delivery" href="#">Delivery</a>
     </div>
-  </div>
-
-  
-  <div class="city">
-    <h1>Dinner close to you in Atlanta</h1>
-  </div>
-
+    <h1 class="city">Dinner close to you in Atlanta</h1>
   </header>
+
   <section id="filter" class="filter">
-    <p>Rating</p>
-    <div class="rating-container">
-      <div class="rating-option">
-        <label for="rating1">1</label>
-        <input id="rating1" type="checkbox" class="rating" value="1">
-      </div>
-      <div class="rating-option">
-        <label for="stars2">2</label>
-        <input id="stars2" type="checkbox" class="rating" value="2">
-      </div>
-      <div class="rating-option">
-        <label for="stars3">3</label>
-        <input id="stars3" type="checkbox" class="rating" value="3">
-      </div>
-      <div class="rating-option">
-        <label for="stars4">4</label>
-        <input id="stars4" type="checkbox" class="rating" value="4">
-      </div>
-      <div class="rating-option">
-        <label for="stars5">5</label>
-        <input id="stars5" type="checkbox" class="rating" value="5">
-      </div>
+    <div class="sorting-container">
+      <p onclick="sortByCostAsc()">Low price first</p>
+      <p onclick="sortByCostDesc()">High price first</p>
+      <p onclick="reset()">Reset</p>
     </div>
-    <div>
+    <div class="filter-container">
+      <p>Rating</p>
+      <div class="rating-options">
+        <div class="rating-option">
+          <label for="rating1">1</label>
+          <input id="rating1" type="checkbox" class="rating" value="1">
+        </div>
+        <div class="rating-option">
+          <label for="stars2">2</label>
+          <input id="stars2" type="checkbox" class="rating" value="2">
+        </div>
+        <div class="rating-option">
+          <label for="stars3">3</label>
+          <input id="stars3" type="checkbox" class="rating" value="3">
+        </div>
+        <div class="rating-option">
+          <label for="stars4">4</label>
+          <input id="stars4" type="checkbox" class="rating" value="4">
+        </div>
+        <div class="rating-option">
+          <label for="stars5">5</label>
+          <input id="stars5" type="checkbox" class="rating" value="5">
+        </div>
+      </div>
       <button id="filterSubmit">Filter</button>
     </div>
   </section>
+
   <section id="restaurants" class="restaurants">
 
   </section>

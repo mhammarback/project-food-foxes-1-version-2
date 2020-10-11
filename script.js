@@ -8,18 +8,8 @@ const headers = new Headers({
 });
 
 const SEARCH_API_URL = `https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&cuisines=${cuisineId}`;
-const CHEAP_SEARCH_API_URL = `https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&cuisines=${cuisineId}${cheapestFirst}`;
-const EXPENSIVE_SEARCH_API_URL = `https://developers.zomato.com/api/v2.1/search?entity_id=${cityId}&entity_type=city&cuisines=${cuisineId}${expensiveFirst}`;
 
 const searchRequest = new Request(SEARCH_API_URL, {
-  headers: headers
-});
-
-const cheapSearchRequest = new Request(CHEAP_SEARCH_API_URL, {
-  headers: headers
-});
-
-const expensiveSearchRequest = new Request(EXPENSIVE_SEARCH_API_URL, {
   headers: headers
 });
 
@@ -41,6 +31,50 @@ const showRandomResults = () => {
 };
 showRandomResults();
 
+let newRestaurants = [];
+const getRestaurantInfo = (array) => {
+  array.forEach(item => {
+    const name = item.restaurant.name;
+    const address = item.restaurant.location.address;
+    const averageCost = item.restaurant.average_cost_for_two;
+    const rating = parseFloat(item.restaurant.user_rating.aggregate_rating);
+    const image = item.restaurant.featured_image;
+    newRestaurants.push({ name, address, averageCost, rating, image });
+  });
+}
+
+const generateHTMLForRestaurants = (array) => {
+  let restaurantHTML = "";
+  restaurantHTML += `<div class="box"><div class="name"><h3>${array.name}</h3></div>`;
+  restaurantHTML += `<div class="address"><p>${array.address}</p></div>`;
+  restaurantHTML += `<p>${array.averageCost} &#36 </p>`;
+  restaurantHTML += `<p>${array.rating} &#11088</p>`;
+  restaurantHTML += `<div class="image"><img src=${array.image}></div></div>`;
+  return restaurantHTML;
+};
+
+const sortByCostAsc = () => {
+  const sortedArrayAsc = newRestaurants.sort((a, b) => {
+    return a.averageCost - b.averageCost;
+  });
+  console.log(sortedArrayAsc);
+  restaurants.innerHTML = "";
+  sortedArrayAsc.forEach((restaurant) => {
+    restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
+  });
+};
+
+const sortByCostDesc = () => {
+  const sortedArrayDesc = newRestaurants.sort((a, b) => {
+    return b.averageCost - a.averageCost;
+  });
+  console.log(sortedArrayDesc);
+  restaurants.innerHTML = "";
+  sortedArrayDesc.forEach((restaurant) => {
+    restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
+  });
+};
+
 displayFilteredRestaurants = (array) => {
   let filteredRestaurants = [];
   checkElements.forEach((rating) => {
@@ -54,42 +88,6 @@ displayFilteredRestaurants = (array) => {
   return filteredRestaurants;
 };
 
-const generateHTMLForRestaurants = (array1) => {
-  let restaurantHTML = "";
-  restaurantHTML += `<div class="box"><h3>${array1.name}</h3>`;
-  restaurantHTML += `<p>${array1.address}</p>`;
-  restaurantHTML += `<p>${array1.averageCost} &#36 </p>`;
-  restaurantHTML += `<p>${array1.rating} &#11088</p>`;
-  restaurantHTML += `<img src=${array1.image}></div>`;
-  return restaurantHTML;
-};
-
-const sortOnCheapest = () => {
-  restaurants.innerHTML = "";
-  fetch(cheapSearchRequest)
-    .then(response => response.json())
-    .then(data => {
-      const restaurantArray = data.restaurants;
-      getRestaurantInfo(restaurantArray);
-      newRestaurants.forEach((restaurant) => {
-        restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
-      });
-    });
-};
-
-const sortOnExpensive = () => {
-  restaurants.innerHTML = "";
-  fetch(expensiveSearchRequest)
-    .then(response => response.json())
-    .then(data => {
-      const restaurantArray = data.restaurants;
-      getRestaurantInfo(restaurantArray);
-      newRestaurants.forEach((restaurant) => {
-        restaurants.innerHTML += generateHTMLForRestaurants(restaurant);
-      });
-    });
-};
-
 filterButton.addEventListener('click', () => {
   const filteredRestaurants = displayFilteredRestaurants(newRestaurants);
   restaurants.innerHTML = '';
@@ -98,14 +96,6 @@ filterButton.addEventListener('click', () => {
   });
 })
 
-let newRestaurants = [];
-const getRestaurantInfo = (array) => {
-  array.forEach(item => {
-    const name = item.restaurant.name;
-    const address = item.restaurant.location.address;
-    const averageCost = item.restaurant.average_cost_for_two;
-    const rating = parseFloat(item.restaurant.user_rating.aggregate_rating);
-    const image = item.restaurant.featured_image;
-    newRestaurants.push({ name, address, averageCost, rating, image });
-  });
-}
+const reset = () => {
+  location.reload();
+};
