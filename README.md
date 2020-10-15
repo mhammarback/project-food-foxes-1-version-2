@@ -1,4 +1,4 @@
-## The Project
+# Build a Food Review website 🌮🥑
 
 This project was made during the Technigo Bootcamp. 
 We where a group of three and the majority of time this site was 
@@ -7,9 +7,7 @@ developed using mob programming.
 We practiced Javascript but also investigated Github even more. 
 We all created a seperate branch and in the end we did a Merge.
 
-# Build a Food Review website 🌮🥑
-
-Our page is built based on a random combination of cuisine, city, and design provided by the Technigo team on site. All data should be fetched from the [Zomato API.](https://developers.zomato.com/)  
+Our page is built based on a random combination of cuisine, city, and design provided by the Technigo team on site. All data is fetched from the [Zomato API.](https://developers.zomato.com/)  
 
 ## Our team's combination: Seafood restaurants in Atlanta, GA
 
