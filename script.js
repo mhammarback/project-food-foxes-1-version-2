@@ -38,7 +38,8 @@ const getRestaurantInfo = (array) => {
     const address = item.restaurant.location.address;
     const averageCost = item.restaurant.average_cost_for_two;
     const rating = parseFloat(item.restaurant.user_rating.aggregate_rating);
-    const image = item.restaurant.featured_image;
+    const image = addImage(item.restaurant.featured_image);
+    //const restoImg = addImage(item.restaurant.featured_image);
     newRestaurants.push({ name, address, averageCost, rating, image });
   });
 }
@@ -99,3 +100,12 @@ filterButton.addEventListener('click', () => {
 const reset = () => {
   location.reload();
 };
+
+
+const addImage = (image) => {
+  if (image === '') {
+    return ('./img/restaurant.jpg');
+  } else {
+    return image;
+  }
+}
