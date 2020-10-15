@@ -17,7 +17,7 @@ Our team has been tasked with using the Zomato API to list Seafood restaurants i
 ## How to complete this task
 
 
-We build the a solid foundation together using mob programing and then we split up and created seperate branches to cower more tasks in a faster pace. 
+We build a solid foundation in HTML, CSS and Javascript together using mob programing and then we split up and created seperate branches to cower more tasks in a faster pace. 
 
 In the end result we manage to have a functional website with these features: 
 
